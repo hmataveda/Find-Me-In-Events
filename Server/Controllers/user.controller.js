@@ -7,9 +7,8 @@ const mailgun = require("mailgun-js");
 const _ = require("lodash");
 
 const DOMAIN = "sandboxf9ad8162cea9485d81af6a158ee4f350.mailgun.org";
-// const DOMAIN = resetKey;
 const mg = mailgun({
-  apiKey: "4bdc56c72e72e2d7aaaf11412e534f3b-77985560-71f3a1c5",
+  apiKey: "71051f56dc5a6371ca8f7218f1d99fb1",
   domain: DOMAIN,
 });
 
