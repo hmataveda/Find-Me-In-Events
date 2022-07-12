@@ -2,14 +2,14 @@ const User = require("../Models/user.model");
 const jwt = require("jsonwebtoken"); // sending the tokens
 const bcrypt = require("bcrypt"); // password
 const secretKey = process.env.SECRET_KEY;
-const resetKey = process.env.RESET_KEY;
+const domainKey = process.env.domain_key;
+const mailgunapikey = process.env.maigun_apikey;
 const mailgun = require("mailgun-js");
 const _ = require("lodash");
 
-const DOMAIN = "sandboxf9ad8162cea9485d81af6a158ee4f350.mailgun.org";
-// const DOMAIN = resetKey;
+const DOMAIN = domainKey;
 const mg = mailgun({
-  apiKey: "4bdc56c72e72e2d7aaaf11412e534f3b-77985560-71f3a1c5",
+  apiKey: mailgunapikey,
   domain: DOMAIN,
 });
 
@@ -154,7 +154,8 @@ const resetPassword = async (req, res) => {
       if (!userPayload) {
         console.log("token verification failed ");
       } else {
-        let user = await User.findOne({ resetLink: token });
+        // let user = await User.findOne({resetLink: token});
+        let user = await User.findOne({ _id: userPayload._id });
         if (user) {
           const obj = {
             password: newPassword,
@@ -174,7 +175,7 @@ const resetPassword = async (req, res) => {
       res.status(401).json(err);
     }
   } catch (err) {
-    console.log("Error while reseting the   password", err);
+    console.log("Error while reseting the password", err);
     res.status(400).json(err);
   }
 };
