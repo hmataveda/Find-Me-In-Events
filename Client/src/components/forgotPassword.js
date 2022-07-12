@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Paper } from "@mui/material";
-import { Typography, } from "@mui/material";
+import { Typography } from "@mui/material";
 import { TextField } from "@mui/material";
-import { Button, Box,Grid } from "@mui/material";
-
+import { Button, Box, Grid } from "@mui/material";
+import { toast } from "react-toastify";
 
 function ForgotPassword() {
   const [emailId, setemail] = useState("");
@@ -20,6 +20,7 @@ function ForgotPassword() {
       )
       .then((res) => {
         console.log("succfully sent email", res);
+        toast.success("Check you Email please !!");
         e.target.disabled = true;
       })
       .catch((err) => {
@@ -29,37 +30,41 @@ function ForgotPassword() {
   return (
     <div className="passwordBar">
       <Paper
-            elevation={2}
-            sx={{
-              p: 3,
-            }}
-          >
-            <Box>
-              <Grid container spacing={3}>
-                <Grid container item spacing={1}>
-                  <Grid item xs={12}>
-                  <h2>
-                    ForgotPassword?
-                  </h2>
-                  <TextField
-              fullWidth
-              label="Enter your email"
-              id="div"
-              className="textField"
-              value={emailId}
-              onChange={(e) => {
-              setemail(e.target.value)}}
-            />
-            <br/>
-            <br/>
-            <Typography>Reset Link has been sent your email</Typography>
-            
-            <Button  variant="contained"
-              sx={{ mt: 3 , ml:3}} onClick={handleClick}>Go to emial</Button>
+        elevation={2}
+        sx={{
+          p: 3,
+        }}
+      >
+        <Box>
+          <Grid container spacing={3}>
+            <Grid container item spacing={1}>
+              <Grid item xs={12}>
+                <h2>ForgotPassword?</h2>
+                <TextField
+                  fullWidth
+                  label="Enter your email"
+                  id="div"
+                  className="textField"
+                  value={emailId}
+                  onChange={(e) => {
+                    setemail(e.target.value);
+                  }}
+                />
+                <br />
+                <br />
+                <Typography>Reset Link has been sent your email</Typography>
+
+                <Button
+                  variant="contained"
+                  sx={{ mt: 3, ml: 3 }}
+                  onClick={handleClick}
+                >
+                  Check your email
+                </Button>
               </Grid>
-                </Grid>
-              </Grid>
-            </Box>
+            </Grid>
+          </Grid>
+        </Box>
       </Paper>
     </div>
   );

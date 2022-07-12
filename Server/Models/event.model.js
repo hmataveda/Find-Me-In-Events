@@ -82,7 +82,7 @@ const EventSchema = new mongoose.Schema(
     },
     date: {
       type: Date,
-        required : [true, 'When\'s the Event?']
+      required: [true, "When's the Event?"],
     },
     time: {
       type: String,
@@ -100,7 +100,7 @@ const EventSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      default: "/image/Meetup.png",
+      default: "/image/Meetup2.jpg",
     },
 
     going: [
